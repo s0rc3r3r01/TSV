@@ -43,7 +43,7 @@
           , head   = !!this.header
           , keys   = (typeof data[0] === 'object') && Object.keys(data[0])
           , header = keys && keys.join(sep)
-          , output = head ? (header + br) : ''
+          , output = head ? (br) : ''
 
         if (!data || !keys) return ''
             

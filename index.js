@@ -31,7 +31,7 @@
 
     function Parser (sep, options) {
         var opt = extend({
-            header: true
+            header: false
         }, options)
 
         this.sep = sep
@@ -43,18 +43,20 @@
           , head   = !!this.header
           , keys   = (typeof data[0] === 'object') && Object.keys(data[0])
           , header = keys && keys.join(sep)
-          , output = head ? (br) : ''
-
+          , output = head ? (header + br) : ''
         if (!data || !keys) return ''
-            
-        return output + data.map(function(obj){
+
+        var result = output+data.map(function(obj){
+          console.log("value of output "+output+" value of data "+data .magenta);
             var item = keys ? {} : []
             var values = keys.reduce(function(p, key){
                 p.push(obj[key])
                 return p
             }, [])
+
             return values.join(sep)
         }).join(br)
+        if (result == "") {return ""} else {return result+"\n"}
     }
 
     Parser.prototype.parse = function (tsv) {
